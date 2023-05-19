@@ -1,8 +1,8 @@
+using Services.Client.Implementation;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using StyledRazor.Core.Services;
 using WebClient;
-using WebClient.Services.Implementation;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
