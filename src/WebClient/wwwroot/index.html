@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>WebClient</title>
+    <base href="/" />
+    <link href="css/app.css" rel="stylesheet" />
+    
+    <!-- If you add any scoped CSS files, uncomment the following to load them
+    <link href="WebClient.styles.css" rel="stylesheet" /> -->
+</head>
+
+<body>
+    <div id="app">Loading...</div>
+
+    <div id="blazor-error-ui">
+        An unhandled error has occurred.
+        <a href="" class="reload">Reload</a>
+        <a class="dismiss">🗙</a>
+    </div>
+    <script src="_framework/blazor.webassembly.js"></script>
+    <script type="text/javascript">
+        window.windowDimension = function() {
+            return {
+                width: window.innerWidth,
+                height: window.innerHeight
+            };
+        }
+
+        window.dimensionFrom = function(component) {
+            return {
+                width: component.offsetWidth,
+                height: component.offsetHeight
+            };
+        }
+
+        window.browserResize = function () {
+            DotNet.invokeMethodAsync("StyledRazor.Core", 'OnBrowserResize').then(data => data);
+        }
+
+        window.addEventListener("resize",  browserResize);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,3 @@
+[submodule "src/StyledRazor"]
+	path = src/StyledRazor
+	url = https://github.com/davigarms/StyledRazor

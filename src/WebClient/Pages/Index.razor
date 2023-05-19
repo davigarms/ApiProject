@@ -1,0 +1,33 @@
+﻿@page "/"
+
+@inject EventsService EventsService;
+
+<Cover>
+  <Grid BaseWidth="200px" Height="100px">
+    @if (Events == null)
+    {
+      <Box>Loading events...</Box>
+    }
+    else
+    {
+      var i = 0;
+      @foreach (var ev in Events)
+      {
+        <GridItem Double="@(i==1)">
+          <Background Color="lightgrey">
+            @ev.Name
+          </Background>
+        </GridItem>
+        i++;
+      }
+    }
+  </Grid>
+</Cover>
+
+@code {
+
+  private Events[]? Events { get; set; }
+
+  protected override async Task OnInitializedAsync() => Events = await EventsService.GetEvents();
+
+}
