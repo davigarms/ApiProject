@@ -1,13 +1,14 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using System.Runtime.InteropServices.JavaScript;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Controllers;
 
 [Route("identity")]
-[Authorize]
 public class IdentityController : ControllerBase
 {
   [HttpGet]
+  [Authorize]
   public IActionResult Get()
   {
     Console.WriteLine("Getting User claims...");
