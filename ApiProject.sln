@@ -9,13 +9,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityServer", "src\Ident
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api", "src\Api\Api.csproj", "{ACD68EE0-6EDC-4025-AF19-CB624C9E716B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Console", "src\Console\Console.csproj", "{F8EDD451-A498-4447-8F7D-94BD324A9437}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client.Console", "src\Client.Console\Client.Console.csproj", "{F8EDD451-A498-4447-8F7D-94BD324A9437}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebClient", "src\WebClient\WebClient.csproj", "{26D4240D-2D8D-48EC-90B4-795554F70F03}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client.BlazorWasm", "src\Client.BlazorWasm\Client.BlazorWasm.csproj", "{26D4240D-2D8D-48EC-90B4-795554F70F03}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "StyledRazor", "StyledRazor", "{76FFF031-EB50-4AC3-841C-979628FA098D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorServer", "src\BlazorServer\BlazorServer.csproj", "{F7018013-00FF-4E09-974E-DFC00082A2A2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client.BlazorServer", "src\Client.BlazorServer\Client.BlazorServer.csproj", "{F7018013-00FF-4E09-974E-DFC00082A2A2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "src\Services\Services.csproj", "{0EB3A535-4B04-4B45-AA4A-1B7332B27B8B}"
 EndProject
