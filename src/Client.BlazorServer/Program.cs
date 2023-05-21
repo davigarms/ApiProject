@@ -1,5 +1,5 @@
 using Services.Client.Implementation;
-using StyledRazor.Core.Services;
+using StyledRazor.Core.Browser;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();

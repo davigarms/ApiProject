@@ -1,7 +1,7 @@
 using Services.Client.Implementation;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
-using StyledRazor.Core.Services;
+using StyledRazor.Core.Browser;
 using WebClient;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);

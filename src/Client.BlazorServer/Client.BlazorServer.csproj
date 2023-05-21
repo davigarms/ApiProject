@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="StyledRazor.Lib" Version="1.0.1" />
+    <PackageReference Include="StyledRazor.Lib" Version="1.0.2" />
   </ItemGroup>
 
 
