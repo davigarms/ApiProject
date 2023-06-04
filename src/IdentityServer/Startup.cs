@@ -3,6 +3,7 @@
 
 
 using IdentityServer4.Services;
+using IdentityServerHost.Quickstart.UI;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
@@ -31,12 +32,14 @@ namespace IdentityServer
                     AllowedOrigins = { "https://localhost:7215" }
                 };
             });
-            
+
             var builder = services.AddIdentityServer()
-                .AddDeveloperSigningCredential()        //This is for dev only scenarios when you don’t have a certificate to use.
+                .AddDeveloperSigningCredential() //This is for dev only scenarios when you don’t have a certificate to use.
                 .AddInMemoryApiScopes(Config.ApiScopes)
-                .AddInMemoryClients(Config.Clients);
-            
+                .AddInMemoryClients(Config.Clients)
+                .AddInMemoryIdentityResources(Config.IdentityResources)
+                .AddTestUsers(TestUsers.Users);
+
             // omitted for brevity
         }
 
