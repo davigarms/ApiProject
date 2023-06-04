@@ -1,3 +1,15 @@
 ﻿@inherits LayoutComponentBase
 
-<main> @Body </main>
+<AuthorizeView>
+  <Authorized>
+    <Container>
+      <form method="get" action="logout2">
+        <button type="submit" class="nav-link btn btn-link">Log out</button>
+      </form>
+    </Container>
+    @Body
+  </Authorized>
+  <NotAuthorized>
+    <a href="login2">Log in</a>
+  </NotAuthorized>
+</AuthorizeView>

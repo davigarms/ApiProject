@@ -1,33 +1,31 @@
-﻿@page "/Identity"
-@using Services.Client.Model
+@page "/"
+@inject AuthenticationStateProvider AuthState
 
-@inject IdentityService IdentityService;
+<AuthorizeView>
+  <Authorized>
+    <h1>Hello, @Username!</h1>
 
-<Cover>
-  <Grid BaseWidth="200px" Height="100px">
-    @if (Identity == null)
-    {
-      <Box>Loading events...</Box>
-    }
-    else
-    {
-      
-      foreach (var (identity, i) in Identity.Select((ev, i) => (ev, i)))
-      {
-        <GridItem Double="@(i==1)">
-          <Background Color="lightgrey">
-            @identity.Type: @identity.Value
-          </Background>
-        </GridItem>
-      }
-    }
-  </Grid>
-</Cover>
+    <p>Welcome to your new app.</p>
+  </Authorized>
+  <NotAuthorized>
+    <p>Not Authorized</p>
+  </NotAuthorized>
+</AuthorizeView>
 
-@code {
+@code
+{
+  private string Username { get; set; } = "";
 
-  private Identity[]? Identity { get; set; }
+  protected override async Task OnInitializedAsync()
+  {
+    var state = await AuthState.GetAuthenticationStateAsync();
 
-  protected override async Task OnInitializedAsync() => Identity = await IdentityService.GetIdentity();
+    Username =
+      state.User.Claims
+        .Where(c => c.Type.Equals("name"))
+        .Select(c => c.Value)
+        .FirstOrDefault() ?? string.Empty;
 
+    await base.OnInitializedAsync();
+  }
 }
