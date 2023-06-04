@@ -5,6 +5,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddScoped<EventsService>();
+builder.Services.AddScoped<IdentityService>();
 builder.Services.AddScoped<BrowserService>();
 
 
@@ -21,6 +22,9 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+app.UseAuthentication();
+app.UseAuthorization();
+app.MapControllers().RequireAuthorization();
 
 app.MapBlazorHub();
 app.MapFallbackToPage("/_Host");

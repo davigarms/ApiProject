@@ -1,21 +1,22 @@
-﻿@page "/"
+﻿@page "/Identity"
 @using Services.Client.Model
 
-@inject EventsService EventsService;
+@inject IdentityService IdentityService;
 
 <Cover>
   <Grid BaseWidth="200px" Height="100px">
-    @if (Events == null)
+    @if (Identity == null)
     {
       <Box>Loading events...</Box>
     }
     else
     {
-      foreach (var (ev, i) in Events.Select((ev, i) => (ev, i)))
+      
+      foreach (var (identity, i) in Identity.Select((ev, i) => (ev, i)))
       {
         <GridItem Double="@(i==1)">
           <Background Color="lightgrey">
-            @ev.Name
+            @identity.Type: @identity.Value
           </Background>
         </GridItem>
       }
@@ -25,8 +26,8 @@
 
 @code {
 
-  private Events[]? Events { get; set; }
+  private Identity[]? Identity { get; set; }
 
-  protected override async Task OnInitializedAsync() => Events = await EventsService.GetEvents();
+  protected override async Task OnInitializedAsync() => Identity = await IdentityService.GetIdentity();
 
 }
