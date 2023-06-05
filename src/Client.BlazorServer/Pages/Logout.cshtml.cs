@@ -17,5 +17,7 @@ public class LogoutModel : PageModel
     
     await HttpContext.SignOutAsync("Cookies");
     await HttpContext.SignOutAsync("oidc", authProps);
+    
+    
   }
 }

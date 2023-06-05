@@ -1,4 +1,5 @@
 using System.IdentityModel.Tokens.Jwt;
+using Microsoft.AspNetCore.Authentication;
 
 var builder = WebApplication.CreateBuilder(args);
 JwtSecurityTokenHandler.DefaultMapInboundClaims = false;
@@ -20,6 +21,11 @@ builder.Services.AddAuthentication(options =>
         options.ResponseType = "code";
 
         options.SaveTokens = true;
+        
+        options.Scope.Add("profile");
+        options.Scope.Add("email");
+        options.Scope.Add("address");
+        options.GetClaimsFromUserInfoEndpoint = true;
     });
 
 var app = builder.Build();
