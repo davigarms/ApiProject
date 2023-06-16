@@ -19,15 +19,22 @@ builder.Services.AddAuthentication(options =>
         options.ClientId = "mvc";
         options.ClientSecret = "secret";
         options.ResponseType = "code";
-
         options.SaveTokens = true;
         
-        options.Scope.Add("profile");
-        options.Scope.Add("email");
+        options.ClaimActions.MapUniqueJsonKey("website", "website");
+        // options.ClaimActions.MapUniqueJsonKey("website2", "website2");
+        options.ClaimActions.MapUniqueJsonKey("address", "address");
+        // options.ClaimActions.MapUniqueJsonKey("address2", "address2");
+        options.ClaimActions.MapUniqueJsonKey("email_verified", "email_verified");
+        
         options.Scope.Add("address");
+        // options.Scope.Add("address2");
+        // options.Scope.Add("website2");
+        options.Scope.Add("email");
+        
         options.GetClaimsFromUserInfoEndpoint = true;
     });
-
+    
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -40,9 +47,7 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-
 app.UseRouting();
-
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers().RequireAuthorization();

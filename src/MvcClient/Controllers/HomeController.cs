@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MvcClient.Models;
@@ -25,10 +26,16 @@ public class HomeController : Controller
         return View();
     }
     
-    public IActionResult Logout()
+    public async Task Logout()
     {
-        return SignOut("Cookies", "oidc");
+        await HttpContext.SignOutAsync("Cookies");
+        await HttpContext.SignOutAsync("oidc", AuthProps());
     }
+    
+    private AuthenticationProperties AuthProps()  => new AuthenticationProperties
+    {
+        RedirectUri = Url.Content("~/")
+    };
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()

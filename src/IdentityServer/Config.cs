@@ -4,6 +4,7 @@
 
 using IdentityServer4.Models;
 using System.Collections.Generic;
+using IdentityModel;
 using IdentityServer4;
 
 namespace IdentityServer
@@ -15,8 +16,11 @@ namespace IdentityServer
             {
                 new IdentityResources.OpenId(),
                 new IdentityResources.Profile(),
-                new IdentityResources.Email(),
                 new IdentityResources.Address(),
+                new IdentityResources.Email(),
+                new ("website", new[] {"website"} ),
+                new ("website2", new[] {"website2"} ),
+                new ("address2", new[] {"address2"} ),
             };
         
         public static IEnumerable<ApiScope> ApiScopes =>
@@ -30,7 +34,7 @@ namespace IdentityServer
             new List<Client>
             {
                 // machine to machine client (from quickstart 1)
-                new Client
+                new()
                 {
                     ClientId = "client",
                     ClientSecrets = { new Secret("secret".Sha256()) },
@@ -39,8 +43,9 @@ namespace IdentityServer
                     // scopes that client has access to
                     AllowedScopes = { "api1" }
                 },
+                
                 // interactive ASP.NET Core MVC client
-                new Client
+                new()
                 {
                     ClientId = "mvc",
                     ClientSecrets = { new Secret("secret".Sha256()) },
@@ -58,28 +63,13 @@ namespace IdentityServer
                         IdentityServerConstants.StandardScopes.OpenId,
                         IdentityServerConstants.StandardScopes.Profile,
                         IdentityServerConstants.StandardScopes.Email,
-                        IdentityServerConstants.StandardScopes.Address,
-                    }
-                },
-                // interactive ASP.NET Core MVC client
-                new Client
-                {
-                    ClientId = "blazor",
-                    ClientSecrets = { new Secret("secret".Sha256()) },
-
-                    AllowedGrantTypes = GrantTypes.Code,
-
-                    // where to redirect to after login
-                    RedirectUris = { "https://localhost:5002/signin-oidc" },
-
-                    // where to redirect to after logout
-                    PostLogoutRedirectUris = { "https://localhost:5002/signout-callback-oidc" },
-
-                    AllowedScopes = new List<string>
-                    {
-                        IdentityServerConstants.StandardScopes.OpenId,
-                        IdentityServerConstants.StandardScopes.Profile,
-                    }
+                        "address",
+                        "address2",
+                        "website2",
+                        "website"
+                    },
+                    
+                     
                 }
             };
     }
