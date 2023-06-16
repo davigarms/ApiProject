@@ -2,6 +2,7 @@
 // Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
 
 
+using IdentityServer4;
 using IdentityServer4.Services;
 using IdentityServerHost.Quickstart.UI;
 using Microsoft.AspNetCore.Builder;
@@ -33,14 +34,21 @@ namespace IdentityServer
                 };
             });
 
-            var builder = services.AddIdentityServer()
+            services.AddIdentityServer()
                 .AddDeveloperSigningCredential() //This is for dev only scenarios when you don’t have a certificate to use.
+                .AddInMemoryIdentityResources(Config.IdentityResources)
                 .AddInMemoryApiScopes(Config.ApiScopes)
                 .AddInMemoryClients(Config.Clients)
-                .AddInMemoryIdentityResources(Config.IdentityResources)
                 .AddTestUsers(TestUsers.Users);
+                
+            services.AddAuthentication()
+                .AddFacebook("Facebook", options =>
+                {
+                    options.SignInScheme = IdentityServerConstants.ExternalCookieAuthenticationScheme;
 
-            // omitted for brevity
+                    options.ClientId = "282012127527933";
+                    options.ClientSecret = "961f504b6df45925bd957088b09c44f2";
+                });
         }
 
         public void Configure(IApplicationBuilder app)
