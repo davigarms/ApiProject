@@ -69,8 +69,26 @@ namespace IdentityServer
                         "website",
                         "api1"
                     },
-                    
-                     
+                },
+                new()
+                {
+                    ClientId = "blazor",
+                    ClientSecrets = { new Secret("secret".Sha256()) },
+        
+                    AllowedGrantTypes = GrantTypes.Code,
+        
+                    // where to redirect to after login
+                    RedirectUris = { "https://localhost:5002/signin-oidc" },
+        
+                    // where to redirect to after logout
+                    PostLogoutRedirectUris = { "https://localhost:5002/signout-callback-oidc" },
+        
+                    AllowedScopes = new List<string>
+                    {
+                        IdentityServerConstants.StandardScopes.OpenId,
+                        IdentityServerConstants.StandardScopes.Profile,
+                        "address",
+                    },
                 }
             };
     }

@@ -1,33 +1,32 @@
 ﻿@page "/Identity"
 @using Services.Client.Model
+@using System.Security.Claims
 
 @inject IdentityService IdentityService;
+@inject AuthenticationStateProvider AuthState;
 
 <Cover>
-  <Grid BaseWidth="200px" Height="100px">
+  <Grid Height="100px" Cols="1">
     @if (Identity == null)
     {
-      <Box>Loading events...</Box>
+      <Box>Loading Identity...</Box>
     }
     else
     {
-      
       foreach (var (identity, i) in Identity.Select((ev, i) => (ev, i)))
       {
-        <GridItem Double="@(i==1)">
-          <Background Color="lightgrey">
+        <GridItem>
             @identity.Type: @identity.Value
-          </Background>
         </GridItem>
       }
     }
   </Grid>
+  
 </Cover>
 
 @code {
 
   private Identity[]? Identity { get; set; }
-
+  
   protected override async Task OnInitializedAsync() => Identity = await IdentityService.GetIdentity();
-
 }

@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using System.IdentityModel.Tokens.Jwt;
+using Microsoft.AspNetCore.Authentication;
 using Services.Client.Implementation;
 using StyledRazor.Core.Browser;
 
@@ -26,6 +27,10 @@ builder.Services.AddAuthentication(options =>
         options.ResponseType = "code";
         options.SaveTokens = true;
         options.GetClaimsFromUserInfoEndpoint = true;
+        
+        options.ClaimActions.MapUniqueJsonKey("address", "address");
+        
+        options.Scope.Add("address");
 
         options.Events = new OpenIdConnectEvents
         {
@@ -55,6 +60,8 @@ app.UseRouting();
 
 app.UseAuthentication();
 app.UseAuthorization();
+
+app.MapControllers().RequireAuthorization();
 
 app.MapBlazorHub();
 app.MapFallbackToPage("/_Host");
