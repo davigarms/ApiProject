@@ -32,6 +32,8 @@ builder.Services.AddAuthentication(options =>
         // options.Scope.Add("website2");
         options.Scope.Add("email");
         
+        options.Scope.Add("api1");
+        
         options.GetClaimsFromUserInfoEndpoint = true;
     });
     

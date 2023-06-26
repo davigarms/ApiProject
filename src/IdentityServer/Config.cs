@@ -66,7 +66,8 @@ namespace IdentityServer
                         "address",
                         "address2",
                         "website2",
-                        "website"
+                        "website",
+                        "api1"
                     },
                     
                      
