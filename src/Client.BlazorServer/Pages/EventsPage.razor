@@ -13,7 +13,7 @@
     {
       foreach (var (ev, i) in Events.Select((ev, i) => (ev, i)))
       {
-        <GridItem Double="@(i==1)">
+        <GridItem Double="@(i == 1)">
           <Background Color="lightgrey">
             @ev.Name
           </Background>

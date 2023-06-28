@@ -67,7 +67,7 @@ namespace IdentityServer
                         "address2",
                         "website2",
                         "website",
-                        "api1"
+                        "api1",
                     },
                 },
                 new()
@@ -88,6 +88,7 @@ namespace IdentityServer
                         IdentityServerConstants.StandardScopes.OpenId,
                         IdentityServerConstants.StandardScopes.Profile,
                         "address",
+                        "api1",
                     },
                 }
             };

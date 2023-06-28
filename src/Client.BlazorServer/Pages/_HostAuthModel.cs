@@ -17,8 +17,8 @@ public class _HostAuthModel : PageModel
     await HttpContext.SignOutAsync("oidc", AuthProps());
   }
 
-  private AuthenticationProperties AuthProps()  => new AuthenticationProperties
-    {
-      RedirectUri = Url.Content("~/")
-    };
+  private AuthenticationProperties AuthProps() => new()
+  {
+    RedirectUri = Url.Content("~/")
+  };
 }

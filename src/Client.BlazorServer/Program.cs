@@ -3,6 +3,7 @@ using System.IdentityModel.Tokens.Jwt;
 using Microsoft.AspNetCore.Authentication;
 using Services.Client.Implementation;
 using StyledRazor.Core.Browser;
+using StyledRazor.Core.MediaQuery;
 
 JwtSecurityTokenHandler.DefaultMapInboundClaims = false;
 
@@ -13,6 +14,7 @@ builder.Services.AddServerSideBlazor();
 builder.Services.AddScoped<EventsService>();
 builder.Services.AddScoped<IdentityService>();
 builder.Services.AddScoped<BrowserService>();
+builder.Services.AddScoped<MediaQueryService>();
 builder.Services.AddAuthentication(options =>
     {
         options.DefaultScheme = "Cookies";
@@ -26,11 +28,14 @@ builder.Services.AddAuthentication(options =>
         options.ClientSecret = "secret";
         options.ResponseType = "code";
         options.SaveTokens = true;
-        options.GetClaimsFromUserInfoEndpoint = true;
-        
+
         options.ClaimActions.MapUniqueJsonKey("address", "address");
-        
+
         options.Scope.Add("address");
+
+        options.Scope.Add("api1");
+
+        options.GetClaimsFromUserInfoEndpoint = true;
 
         options.Events = new OpenIdConnectEvents
         {
@@ -42,7 +47,6 @@ builder.Services.AddAuthentication(options =>
             }
         };
     });
-
 
 var app = builder.Build();
 
