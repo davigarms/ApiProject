@@ -44,6 +44,7 @@ public class HomeController : Controller
         return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
     }
     
+    [Route("json")]
     public async Task<IActionResult> CallApi()
     {
         var accessToken = await HttpContext.GetTokenAsync("access_token");
